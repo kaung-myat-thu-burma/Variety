@@ -1,0 +1,136 @@
+<!DOCTYPE html>
+<html>
+<head>
+	<meta charset="utf-8">
+	<meta name="viewport" content="width=device-width, initial-scale=1">
+	<title>Stop Watch 2nd</title>
+
+<style type="text/css">
+	
+* {margin:0;
+   padding:0;
+   font-family:"Consolas";}
+
+body { height:100vh;
+	background:linear-gradient(180deg,royalblue,blue); }
+.stopWatch { display:flex;
+justify-content:center;
+align-items:center; }
+
+input { padding:5px 10px;
+        margin:10px;
+        border:2px solid white;
+        border-radius:5px;
+        font-size:25px;
+        font-family:"Calibri";
+        color:rgba(25,50,255);
+        margin-top:75px;
+         }
+
+input:active { color:white; background:royalblue; transition:.1s ease-in-out; }
+
+h1 { text-align:center;
+     font-size:125px;
+     color:white; }
+
+ul { display:flex;
+     flex-wrap:wrap; }
+
+
+</style>
+
+</head>
+<body>
+
+<div class = "stopWatch">
+<input type = "button" value = "Start" onclick = "start()">
+<input type = "button" value = "Pause" onclick = "pause()">
+<input type = "button" value = "Stop" onclick = "stop()">
+<input type = "button" value = "Restart" onclick = "restart()">
+<input type = "button" value = "Show" onclick = "show()">
+<input type = "button" value = "Clear" onclick = "clearing()">
+</div>
+
+<h1> 00:00:00 </h1>
+<ul> </ul>
+
+
+<script type="text/javascript">
+	
+var h1 = document.querySelector("h1");
+var ul = document.querySelector("ul");
+var min = 0; sec = 0; milli = 0;
+var timer;
+
+function get() {
+
+h1.textContent = `${min}:${sec}:${milli}`
+
+}
+
+function start(){
+
+timer = setInterval(going,10);
+
+}
+
+function going(){
+
+milli++;
+if(milli == 100) { milli = 0;  sec++;}
+if(sec == 60 ) { sec = 0 ; min++;}
+get();
+
+}
+
+
+
+function pause(){
+clearInterval(timer);
+timer = false;
+get();
+}
+
+
+function stop() {
+	clearInterval(timer);
+milli = 0; sec = 0; min = 0;
+get();
+}
+
+function restart() {
+	milli = 0 ;sec = 0; min = 0;
+	clearInterval(timer);
+start();
+get();
+
+}
+
+function show(){
+
+var l = document.createElement("li");
+ul.appendChild(l);
+l.textContent = `${min}:${sec}:${milli}`;
+l.style.marginLeft = "25px";
+l.style.color = "white";
+l.style.fontFamily = "Calibri";
+l.style.listStyleType = "none";
+}
+
+function clearing(){
+
+ul.innerHTML = " ";
+
+}
+
+
+
+</script>
+
+
+
+
+
+
+</body>
+</html>

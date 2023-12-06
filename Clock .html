@@ -1,0 +1,224 @@
+<!DOCTYPE html>
+<html>
+<head>
+	<meta charset="utf-8">
+	<meta name="viewport" content="width=device-width, initial-scale=1">
+	<title>Clock</title>
+
+<style type="text/css">
+	
+* { margin:0;
+    padding:0;
+    box-sizing:border-box; }
+
+html,body { height:100%; }
+
+body { 
+       display:grid;
+       place-items:center;
+       text-align:center;
+       background:rgba(175,175,175,1); }
+
+.clock { width:250px;
+         height:250px;
+         border-radius:50%;
+         box-shadow:inset -3px -3px 2px rgba(100,100,100,1),
+                    inset 3px 3px 2px white;
+         position:relative;
+         display:flex;
+         justify-content:center;
+         align-items:center; }
+
+.clock:before { position:absolute;
+                content:'';
+                width:220px;
+                height:220px;
+                border-radius:50%;
+                box-shadow:inset 3px 3px 2px rgba(100,100,100,1),
+                inset -3px -3px 2px white; }
+
+
+.clock:after  {position:absolute;
+               content:'';
+               width:100px;
+               height:100px;
+               border-radius:50%;
+               box-shadow:inset -3px -3px 2px rgba(100,100,100,1),
+               inset 3px 3px 2px white;}
+
+.center-nut1 { position:absolute;
+               width:22px;
+               height:22px;
+               border-radius:50%;
+               background:rgba(100,100,100,1); }
+
+.center-nut2 { position:absolute;
+               width:15px;
+               height:15px;
+               border-radius:50%;
+               background:rgba(00,180,255,1);
+                }
+.indicators div { position:absolute;
+                   width:2px;
+                   height:5px;
+                   background:black;
+                    }
+.indicators div:nth-child(1) { transform:rotate(30deg) translateY(-100px);}
+.indicators div:nth-child(2) { transform:rotate(60deg) translateY(-100px);}
+.indicators div:nth-child(3) { transform:rotate(90deg) translateY(-100px);
+                               background:orangered;}
+.indicators div:nth-child(4) { transform:rotate(120deg) translateY(-100px);}
+.indicators div:nth-child(5) { transform:rotate(150deg) translateY(-100px);}
+.indicators div:nth-child(6) { transform:rotate(180deg) translateY(-100px);
+                               background:orangered;}
+.indicators div:nth-child(7) { transform:rotate(210deg) translateY(-100px);}
+.indicators div:nth-child(8) { transform:rotate(240deg) translateY(-100px);}
+.indicators div:nth-child(9) { transform:rotate(270deg) translateY(-100px);
+                                background:orangered;}
+.indicators div:nth-child(10) { transform:rotate(300deg) translateY(-100px);}
+.indicators div:nth-child(11) { transform:rotate(330deg) translateY(-100px);}
+.indicators div:nth-child(12) { transform:rotate(0deg) translateY(-100px);
+                                background:orangered;}
+
+.sec-hand,.min-hand ,.hr-hand { position:absolute; }
+
+.sec-hand , .sec { position:absolute;
+                   width:180px;
+                   height:180px;
+                   z-index:6;
+                    }
+
+.min-hand ,.min { position:absolute;
+                 width:140px;
+                 height:140px;
+                 z-index:5; }
+
+.hr-hand ,.hr { position:absolute;
+               width:110px;
+               height:110px;
+               z-index:4; }
+
+.sec,.min,.hr { display:flex;
+                justify-content:center; }
+
+.sec:before { position:absolute;
+          width:3px;
+          content:'';
+          height:110px;
+          background:rgba(0,150,255,1);
+           }
+
+.sec:after { position:absolute;
+             width:7px;
+             background:rgba(0,150,255,1);
+             height:35px;
+             content:'';
+             transform:translateY(110px); }
+
+.min:before { position:absolute;
+              content:'';
+              width:10px;
+              height:50px;
+              background:rgba(50,100,200,1);
+              border-radius:10px 10px 2px 2px; }
+
+.min:after { position:absolute;
+             content:'';
+             width:3px;
+             height:35px;
+             background:rgba(50,100,200,1);
+             transform:translateY(50px); }
+
+
+.hr:before { position:absolute;
+             content:'';
+             width:12.5px;
+             height:35px;
+             background:orangered;
+             border-radius:15px;
+              }
+
+.hr:after { position:absolute;
+            content:'';
+            width:5px;
+            background:orangered;
+            transform:translateY(35px); }
+
+
+</style>
+
+</head>
+<body>
+
+<div class = "clock">
+    <div class = "center-nut1"> </div>
+    <div class = "center-nut2"> </div>
+    <div class = "indicators">
+    	 <div></div>
+    	 <div></div>
+    	 <div></div>
+    	 <div></div>
+    	 <div></div>
+    	 <div></div>
+    	 <div></div>
+    	 <div></div>
+    	 <div></div>
+    	 <div></div>
+    	 <div></div>
+    	 <div></div>
+
+    </div>
+
+
+<div class = "sec-hand">
+	<div class = "sec"></div>
+</div>
+
+<div class = "min-hand">
+	<div class = "min"></div>
+</div>
+
+<div class = "hr-hand">
+	<div class = "hr"></div>
+</div>
+
+
+</div>
+
+
+<script type="text/javascript">
+	
+var sec = document.querySelector(".sec");
+var min = document.querySelector(".min");
+var hr  = document.querySelector(".hr");
+
+setInterval(function(){
+
+var time = new Date();
+
+var secs =  time.getSeconds() * 6;
+var mins =  time.getMinutes() * 6;
+var hrs  =  time.getHours() * 30;
+sec.style.transform = `rotateZ(${secs}deg)`;
+min.style.transform = `rotateZ(${mins }deg)`;
+hr.style.transform  = `rotateZ(${hrs+(mins/12)}deg)`;
+
+console.log(hrs+(mins/12))
+
+})
+
+
+
+
+
+
+
+</script>
+
+
+
+
+
+
+</body>
+</html>

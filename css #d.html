@@ -1,0 +1,108 @@
+<!DOCTYPE html>
+<html>
+<head>
+	<meta charset="utf-8">
+	<meta name="viewport" content="width=device-width, initial-scale=1">
+	<title>CSS 3d</title>
+
+<style type="text/css">
+	
+* {margin:0;
+    padding:0;}
+
+body { height:100vh;
+       display:flex;
+       justify-content:center;
+       align-items:center;
+       background:rgba(20,30,80,.9) }
+
+.cuboid  { position:relative;
+           --width:100px;
+           --height:100px;
+           --depth:100px;
+           height:var(--height);
+           width:var(--width);
+           transform:rotateX(24deg) rotateY(32deg);
+           transform-style:preserve-3d;
+           animation:animate 10s linear infinite;
+
+            }
+
+
+@keyframes animate{ 0%{ transform:rotateX(24deg) rotateY(32deg) rotateZ(0deg) }
+                    100%{transform:rotateX(240deg) rotateY(320deg) rotateZ(360deg)} }
+
+
+.cuboid_side { position:absolute;
+                display:flex;
+                justify-content: center;
+                align-items:center;
+                border:1px solid black;
+
+                            background-color:rgba(255,255,255,.3) }
+
+.cuboid_side:nth-of-type(1),.cuboid_side:nth-of-type(2)
+                          { width:var(--width);
+                            height:var(--height);
+                            --coefficient:-0.5;
+                            transform:translate3d(0,0,calc(var(--depth)*var(--coefficient))) }
+
+.cuboid_side:nth-of-type(2){ --coefficient:0.5; }
+
+.cuboid_side:nth-of-type(3),
+.cuboid_side:nth-of-type(4) { width:var(--depth);  
+                             height:var(--height);
+
+                             top:50%;
+                             left:50%; 
+                             --rotation:90deg;
+                             transform:  translate(-50%,-50%) rotateY(var(--rotation))
+                             translate3d(0,0,calc(var(--width)* -0.5))
+                           }
+
+.cuboid_side:nth-of-type(4) { --rotation:-90deg; }
+
+
+.cuboid_side:nth-of-type(6),.cuboid_side:nth-of-type(5) { width:var(--width);
+                              height:var(--depth);
+                              --rotation:-90deg;
+                              top:50%;
+                              left:50%;
+                              transform:translate(-50%,-50%) rotateX(var(--rotation))
+                              translate3d(0,0,calc(var(--height)*-.5)) }
+
+
+.cuboid_side:nth-of-type(6){ --rotation:90deg; }
+
+
+.cuboid:nth-of-type(2) { --width:350px;
+                          --height:350px;
+                          --depth:350px; }
+
+</style>
+
+</head>
+<body>
+
+<div class = "cuboid">
+<div class = "cuboid_side"> 1</div>
+<div class = "cuboid_side"> 2</div>
+<div class = "cuboid_side"> 3</div>
+<div class = "cuboid_side"> 4</div>
+<div class = "cuboid_side"> 5</div>
+<div class = "cuboid_side"> 6</div>
+</div>
+
+
+<div class = "cuboid">
+<div class = "cuboid_side"> 1</div>
+<div class = "cuboid_side"> 2</div>
+<div class = "cuboid_side"> 3</div>
+<div class = "cuboid_side"> 4</div>
+<div class = "cuboid_side"> 5</div>
+<div class = "cuboid_side"> 6</div>
+</div>
+
+
+</body>
+</html>

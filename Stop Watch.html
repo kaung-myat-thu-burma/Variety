@@ -1,0 +1,122 @@
+<!DOCTYPE html>
+<html>
+<head>
+	<meta charset="utf-8">
+	<meta name="viewport" content="width=device-width, initial-scale=1">
+	<title>Stop Watch </title>
+
+
+<style type="text/css">
+	
+body { background:royalblue; }
+
+.stopwatch { display:flex;
+             justify-content:center;
+             align-items:center;
+             margin-top:100px; }
+
+input[type = "button"] { padding:10px 20px;
+                         font-size:30px;
+                         font-family:"Calibri";
+                         font-weight:900;
+                         color:royalblue;
+                         border:2px solid white;
+                         border-radius:5px;
+                         margin:5px; }
+
+.watchtime { display:flex;
+             justify-content:center;
+             align-items:center;
+             color:white;
+             font-size:100px;
+             font-family:"Consolas";
+             margin-top:50px; }
+
+</style>
+
+
+</head>
+<body>
+
+<div class = "stopwatch">
+
+<input type = "button" value = "starttime" onclick = "startTime()">
+<input type = "button" value = "pausetime" onclick = "pauseTime()">
+<input type = "button" value = "stoptime" onclick = "stopTime()">
+<input type = "button" value = "restarttime" onclick = "restartTime()">
+<input type = "button" value = "laptime" onclick = "lapTime()">
+<input type = "button" value = "resettime" onclick = "resetTime()">
+
+</div>
+
+<div class = "watchtime">
+00:00:00 </div>
+<ul class = "laps"> </ul>
+
+
+<script type="text/javascript">
+	
+var watchtime = document.querySelector(".watchtime");
+var lapsvalue = document.querySelector(".laps");
+var mil = 0, mi = 0, se = 0;
+var timer;
+function startTime(){
+ timer =setInterval(runtime,10);
+
+}
+function getTimer(){return (
+watchtime.textContent = `${mi}:${se}:${mil}`)}
+
+function runtime(){
+
+
+mil++;
+if(mil == 10 ) { mil= 0;se++;}
+if(se == 60) { se = 0;mi++;}
+getTimer()
+
+}
+
+
+function pauseTime(){
+
+clearInterval(timer);
+ timer = false;
+
+}
+
+
+function stopTime(){
+	clearInterval(timer);
+	timer = false;
+	mil = 0; mi = 0; se = 0;
+	getTimer();
+}
+
+function restartTime(){
+	stopTime();
+	startTime();
+}
+
+function lapTime(){
+var l = document.createElement("li");
+lapsvalue.appendChild(l);
+l.textContent = getTimer();
+l.style.color = "white";
+l.style.fontFamily = "Consolas";
+
+}
+
+function resetTime()
+{
+lapsvalue.innerHTML = "";
+
+}
+
+
+</script>
+
+
+
+</body>
+</html>

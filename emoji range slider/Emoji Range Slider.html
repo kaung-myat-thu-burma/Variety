@@ -1,0 +1,116 @@
+<!DOCTYPE html>
+<html>
+<head>
+	<meta charset="utf-8">
+	<meta name="viewport" content="width=device-width, initial-scale=1">
+	<title>Emoji Range Slider</title>
+
+<style type="text/css">
+	
+* { margin:0;
+    padding:0; }
+
+body { height:100vh;
+       display:flex;
+       justify-content:center;
+       align-items:center;
+       background:linear-gradient(45deg,orangered,orange); }
+
+
+.wrapper {
+           padding:25px 30px;
+           border-radius:15px;
+           background:white;
+           display:flex;
+           justify-content:center;
+           align-items:center; 
+           flex-direction:column;}
+
+.wrapper .images { width:250px;
+	                height:250px;
+	                overflow:hidden;
+                     }
+
+.wrapper .images li { list-style-type:none;
+                      width:100%;
+                      height:100%; }
+
+.wrapper .images img { width:100%;
+                       height:100%; }
+
+
+li:first-child { margin-top:-250px; }
+
+
+.slider { width:100%;
+           height:10px;
+           background:linear-gradient(90deg,gold,orange);
+           position:relative;
+           margin-top:25px;
+           border-radius:10px; }
+
+.slider input { -webkit-appearance:none;
+                  background:none;
+                  position:absolute;
+                  width:100%;
+                  height:100%; }
+
+
+.slider input::-webkit-slider-thumb { 
+-webkit-appearance:none;
+width:22px;
+height:22px;
+border-radius:50%;
+background:orangered;
+box-shadow:inset 0 0 3px rgba(100,100,100,1);
+ }
+
+</style>
+
+
+
+</head>
+<body>
+
+<div class = "wrapper">
+<div class = "images">
+
+<li><img src = "img1.webp"></li>
+<li><img src = "img2.webp"></li>
+<li><img src = "img3.jpg">
+</li><li><img src = "img4.webp"></li>
+<li><img src = "img5.png"></li>
+</div>
+
+<div class = "slider">
+<input type = "range"  min = "0" max = "100">
+</div>
+
+
+</div>
+
+
+
+
+<script type="text/javascript">
+	
+var input = document.querySelector("input");
+var image = document.querySelector("li:first-child");
+input.addEventListener("input",()=>{
+
+var val = input.value;
+image.style.transition = ".15s linear";
+if(val<20) { image.style.marginTop = "-0px"}
+if(val>20) { image.style.marginTop = "-250px"}
+if(val>40) { image.style.marginTop = "-500px"}
+if(val>60) { image.style.marginTop = "-750px"}
+if(val>80) { image.style.marginTop = "-1000px"}
+
+
+})
+
+
+</script>
+
+</body>
+</html>

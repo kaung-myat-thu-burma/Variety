@@ -1,0 +1,101 @@
+<!DOCTYPE html>
+<html>
+<head>
+	<meta charset="utf-8">
+	<meta name="viewport" content="width=device-width, initial-scale=1">
+	<title>Testing 4</title>
+
+<style type="text/css">
+	
+* {margin:0;
+   padding:0;}
+
+body { height:100vh;
+        }
+
+.container { width:100%;
+     height:100%;
+     display:flex;
+     flex-wrap:wrap;
+     flex-direction:column; }
+
+.container div { width:120px;
+      height:90px;
+      background:white;
+      margin:10px 15px;
+      list-style-type:none;
+      box-shadow:inset 0 0 5px black;
+      border-radius:10px; }
+
+
+</style>
+
+</head>
+<body>
+
+<div class = "container">
+
+<div></div>  <div></div>
+<div></div>  <div></div>
+<div></div>  <div></div>
+<div></div>  <div></div>
+<div></div>  <div></div>
+
+<div></div>  <div></div>
+<div></div>  <div></div>
+<div></div>  <div></div>
+<div></div>  <div></div>
+<div></div>  <div></div>
+
+<div></div>  <div></div>
+<div></div>  <div></div>
+<div></div>  <div></div>
+<div></div>  <div></div>
+<div></div>  <div></div>
+
+<div></div>  <div></div>
+<div></div>  <div></div>
+<div></div>  <div></div>
+<div></div>  <div></div>
+<div></div>  <div></div>
+
+
+</div>
+
+
+<script type="text/javascript">
+	
+var div = document.querySelectorAll(".container div");
+
+var divs = [];
+
+for(x=0;x<div.length;x++){
+divs.push(div[x]);
+}
+
+setInterval(   
+()=>{
+function key(){
+var r = Math.round(Math.random()*255);
+var g = Math.round(Math.random()*255);
+var b = Math.round(Math.random()*255);
+
+this.style.background = `rgba(${r},${g},${b},1)`;
+
+}
+
+for(x=0;x<divs.length;x++){
+key.call(divs[x])
+
+}
+
+
+},1000)
+
+
+
+
+</script>
+
+</body>
+</html>
